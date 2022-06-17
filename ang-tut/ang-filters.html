@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <!--Uppercase and lowercase filter-->
+      <p>The first name is {{ firstName | uppercase }}</p>
+      <p>The last name is {{ lastName | lowercase }}</p>
+      <hr />
+
+      <!--order by filter-->
+      <p>Looping with objects:</p>
+      <ul>
+        <li ng-repeat="x in names | orderBy:'country'">
+          {{ x.name + ', ' + x.country }}
+        </li>
+      </ul>
+      <hr />
+
+      <!--currency filter-->
+      <h4>price: {{ price | currency }}</h4>
+      <hr />
+
+      <!--This example displays only the names containing the letter "i".-->
+      <ul>
+        <li ng-repeat="x in naam | filter: 'i' ">{{ x }}</li>
+      </ul>
+      <hr />
+
+      <!--filter an array only an user input-->
+      Enter array element: <input type="text" ng-model="userinput" />
+      <ul>
+        <li ng-repeat="x in naam | filter: userinput ">{{ x }}</li>
+      </ul>
+      <hr />
+
+      <!--change the sorting order by using order by and change function-->
+      <table border="1" width="100%">
+        <tr>
+          <th ng-click="orderByMe('name')">Name</th>
+          <th ng-click="orderByMe('country')">Country</th>
+        </tr>
+        <tr ng-repeat="x in names | orderBy:myOrderBy">
+          <td>{{x.name}}</td>
+          <td>{{x.country}}</td>
+        </tr>
+      </table>
+      <hr>
+    </div>
+
+    <script>
+      angular.module("myApp", []).controller("myCtrl", function ($scope) {
+        ($scope.firstName = "Aman"), ($scope.lastName = "kumar");
+
+        $scope.names = [
+          { name: "Jani", country: "Norway" },
+          { name: "Carl", country: "Sweden" },
+          { name: "Margareth", country: "England" },
+          { name: "Hege", country: "Norway" },
+          { name: "Joe", country: "Denmark" },
+          { name: "Gustav", country: "Sweden" },
+          { name: "Birgit", country: "Denmark" },
+          { name: "Mary", country: "England" },
+          { name: "Kai", country: "Norway" },
+        ];
+
+        $scope.price = 58;
+
+        $scope.naam = [
+          "Jani",
+          "Carl",
+          "Margareth",
+          "Hege",
+          "Joe",
+          "Gustav",
+          "Birgit",
+          "Mary",
+          "Kai",
+        ];
+        $scope.orderByMe = function (x) {
+          $scope.myOrderBy = x;
+        };
+      });
+    </script>
+  </body>
+</html>

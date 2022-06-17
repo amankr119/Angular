@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h2 ng-mousemove="count=count+1">Mouse over me!</h2>
+        <h1>{{count}}</h1>
+        <hr>
+
+        <button ng-click="count1=count1+1"> Click Me!</button>
+        <p>{{ count1 }}</p>
+        <hr>
+
+        <section>
+            <button ng-click="myFunc()">Click Me!</button>
+            <div ng-show="showMe">
+                <h1>Menu:</h1>
+                <div>Pizza</div>
+                <div>Pasta</div>
+                <div>Maggi</div>
+            </div>
+        </section>
+        <hr>
+
+        <h1 ng-mousemove="myFunc1($event)">Mouse Over Me!</h1>
+        <p>Coordinates : {{x + ',' + y}} </p>
+    </div>    
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope){
+            $scope.count=0;
+
+            $scope.count1=0;
+
+            $scope.showMe=false;
+            $scope.myFunc=function(){
+                $scope.showMe=!$scope.showMe;
+            }
+
+            $scope.myFunc1=function(cordinate){
+                $scope.x=cordinate.clientX;
+                $scope.y=cordinate.clientY;
+            }
+        });
+    </script>
+</body>
+</html>

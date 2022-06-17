@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myApp" , ng-controller="myCtrl">
+      <input type="number" ng-model="num" placeholder="Enter number" />
+      <button ng-click="hexValue()">Submit</button>
+      <p>The hexa decimal value of {{num}} is: <b> {{hex}} </b></p>
+
+    </div>
+    <script>
+      var app = angular.module("myApp", []);
+      app.service("hexafy", function () {
+        this.myFunc = function (x) {
+          return x.toString(16);
+        };
+      });
+      app.controller("myCtrl", function ($scope, hexafy) {
+        $scope.hexValue = function () {
+          $scope.hex = hexafy.myFunc($scope.num);
+        };
+      });
+    </script>
+  </body>
+</html>

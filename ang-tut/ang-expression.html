@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+    <div class="expression" ng-app="" ng-init="mycol='yellow'">
+        <p>first expression : {{5+6}} </p>
+        <input  ng-model="mycol" style="background-color: {{mycol}}">
+        <section ng-app="" ng-init="qty=5; cost=6">
+            <p>Total Rs:{{ qty*cost }}</p>
+        </section>
+        
+        <!--string-->
+        <div class="string" ng-app="" ng-init="firstName='Aman'; lastName='Kumar'">
+            <p>Name: {{firstName + " " + lastName}}</p>
+            <!-- ng-bind -->
+            <p>Name is <span ng-bind="firstName + ' ' + lastName"></span></p>
+        </div>
+
+        <!--objects-->
+        <div class="object" ng-app="" ng-init=" person={
+            firstName:'aman', lastName:'Kumar' } ">
+            <p>Name is <span ng-bind="person.firstName"> </span> {{person.lastName}} </p>
+        </div>
+
+        <!--array-->
+        <div class="array" ng-app="" ng-init="arr=[1,2,3,4,5,6]">
+            <p>The second result is {{arr[1]}} </p>
+            <p>Array is <span ng-bind="arr"></span></p>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+  <body>
+    <body>
+      <form ng-app="myApp" ng-controller="formCtrl" name="myForm" novalidate>
+        <p>
+          Username:
+          <input type="text" ng-model="user" name="user" required />
+          <span
+            style="color: red"
+            ng-show="myForm.user.$dirty && myForm.user.$invalid"
+          >
+            <span ng-show="myForm.user.$error.required"
+              >User Name is required!
+            </span>
+          </span>
+        </p>
+        <p>
+          Email:
+          <input type="email" name="email" ng-model="email" required />
+          <span
+            ng-show="myForm.email.$dirty && myForm.email.$invalid"
+            style="color: red"
+          >
+            <span ng-show="myForm.email.$error.required"
+              >Email address is required!</span
+            >
+            <span ng-show="myForm.email.$error.email"
+              >Invalid email address.</span
+            >
+          </span>
+        </p>
+
+        password:
+        <input type="password" name="pass" id="" ng-model="pass" required placeholder="Enter password" />
+        <span
+          ng-show="myForm.pass.$dirty && myForm.pass.$invalid"
+          style="color: red"
+        >
+          <span ng-show="myForm.pass.$error.required">
+            Password is required!
+          </span>
+        </span>
+
+        <p>
+          <input
+            type="submit"
+            ng-click="myFunc()"
+            ng-disabled="myForm.user.$dirty && myForm.user.$invalid || yForm.email.$dirty && myForm.email.$invalid || myForm.pass.$dirty && myForm.pass.$invalid"
+          />
+        </p>
+      </form>
+    </body>
+    <script>
+      var app = angular.module("myApp", []);
+      app.controller("formCtrl", function ($scope) {
+        $scope.user = "aman.kumar";
+        $scope.email = "amankr@gmail.com";
+        $scope.pass = "Aman12345";
+        if (($scope.user =="aman.kumar") && ($scope.pass =="Aman12345")) {
+          $scope.myFunc = function () {
+            alert("Submitted");
+          };
+        } else {
+          $scope.myFunc = function () {
+            alert("Please put valid user and password");
+          };
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <p>Select a Car :</p>
+      <select ng-model="selectedCar">
+        <option ng-repeat="x in cars" values="x.model">{{ x.model }}</option>
+      </select>
+      <h2>You Selected : {{ selectedCar}}</h2>
+      <hr />
+
+      <!--Second Method -->
+      <select ng-model="carSelected">
+        <option ng-repeat="x in cars" ng-value="{{x}}">{{x.model}}</option>
+      </select>
+      <h1>You selected a {{carSelected.color}} {{carSelected.model}}</h1>
+
+      <!--now i am using ng-options-->
+      <select ng-model="SelectedCar" ng-options="x.model for x in cars"></select>
+      <h1> {{ SelectedCar.model }} </h1>
+      <p> {{ SelectedCar.color }} </p>
+    </div>
+    <script>
+      var app = angular.module("myApp", []);
+      app.controller("myCtrl", function ($scope) {
+        $scope.cars = [
+          { model: "Ford Mustang", color: "red" },
+          { model: "Fiat 500", color: "white" },
+          { model: "Volvo XC90", color: "black" },
+        ];
+      });
+    </script>
+  </body>
+</html>
